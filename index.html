@@ -1,0 +1,2105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Plan de nutrición y entrenamiento para Mario - 10K y pérdida de grasa">
+    <meta name="theme-color" content="#2563eb">
+    <title>MarioFit Pro - Plan 10K & Transformación</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTWFyaW9GaXQgUHJvIiwic2hvcnRfbmFtZSI6Ik1hcmlvRml0Iiwic3RhcnRfdXJsIjoiLiIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiNmZmZmZmYiLCJ0aGVtZV9jb2xvciI6IiMyNTYzZWIifQ==">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #06b6d4;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-600: #475569;
+            --gray-800: #1e293b;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --radius: 12px;
+            --radius-sm: 8px;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: var(--dark);
+            --bg-secondary: var(--gray-800);
+            --text-primary: var(--light);
+            --text-secondary: var(--gray-300);
+            --border: var(--gray-600);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: var(--light);
+            --bg-secondary: white;
+            --text-primary: var(--dark);
+            --text-secondary: var(--gray-600);
+            --border: var(--gray-200);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-icon {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-icon:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Navigation */
+        .nav-tabs {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 73px;
+            z-index: 999;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .nav-tabs::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .nav-tabs::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .nav-tab {
+            padding: 1rem 1.5rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-tab:hover {
+            color: var(--primary);
+        }
+
+        .nav-tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.4s ease-in;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        .grid-4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+
+        /* Stats Cards */
+        .stat-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 0.5rem 0;
+            position: relative;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            opacity: 0.9;
+            position: relative;
+        }
+
+        /* Progress Bars */
+        .progress-container {
+            margin: 1rem 0;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            height: 12px;
+            background: var(--gray-200);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 6px;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255,255,255,0.3),
+                transparent
+            );
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-block {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+            padding-left: 1.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0.25rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid var(--bg-secondary);
+            margin-left: -5px;
+        }
+
+        .timeline-date {
+            font-size: 0.875rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-content {
+            background: var(--bg-primary);
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+        }
+
+        /* Workout Cards */
+        .workout-card {
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s;
+        }
+
+        .workout-card:hover {
+            border-left-color: var(--secondary);
+            transform: translateX(4px);
+        }
+
+        .workout-type {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .workout-strength {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+        }
+
+        .workout-cardio {
+            background: rgba(6, 182, 212, 0.1);
+            color: var(--secondary);
+        }
+
+        .workout-meta {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.75rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .workout-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        /* Nutrition Tracker */
+        .macro-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .macro-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--bg-primary);
+            border-radius: var(--radius-sm);
+            border: 2px solid var(--border);
+        }
+
+        .macro-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .macro-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* Supplement Checklist */
+        .supplement-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .supplement-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-primary);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .supplement-item:hover {
+            border-color: var(--primary);
+            transform: translateX(4px);
+        }
+
+        .supplement-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .supplement-item.checked .supplement-checkbox {
+            background: var(--success);
+            border-color: var(--success);
+        }
+
+        .supplement-item.checked {
+            opacity: 0.7;
+        }
+
+        .supplement-info h4 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .supplement-info p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Alerts */
+        .alert {
+            padding: 1rem 1.25rem;
+            border-radius: var(--radius-sm);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .alert-warning {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid var(--warning);
+            color: #92400e;
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--success);
+            color: #065f46;
+        }
+
+        .alert-info {
+            background: rgba(37, 99, 235, 0.1);
+            border-left: 4px solid var(--primary);
+            color: #1e40af;
+        }
+
+        [data-theme="dark"] .alert-warning { color: #fcd34d; }
+        [data-theme="dark"] .alert-success { color: #6ee7b7; }
+        [data-theme="dark"] .alert-info { color: #93c5fd; }
+
+        /* Charts Container */
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin: 1rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+
+            .macro-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-value {
+                font-size: 2rem;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--gray-200);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.9);
+            transition: transform 0.3s;
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .modal-close:hover {
+            background: var(--gray-100);
+            color: var(--text-primary);
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .badge-primary {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+        }
+
+        .badge-success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+
+        .badge-warning {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .mt-1 { margin-top: 0.5rem; }
+        .mt-2 { margin-top: 1rem; }
+        .mb-1 { margin-bottom: 0.5rem; }
+        .mb-2 { margin-bottom: 1rem; }
+        .hidden { display: none !important; }
+
+        /* Print Styles */
+        @media print {
+            .header, .nav-tabs, .btn, .no-print {
+                display: none !important;
+            }
+            
+            .section {
+                display: block !important;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body data-theme="light">
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-running"></i>
+                <span>MarioFit Pro</span>
+            </div>
+            <div class="header-controls">
+                <button class="btn-icon" id="themeToggle" title="Cambiar tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="btn-icon" id="refreshData" title="Sincronizar">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+                <button class="btn-icon" id="exportData" title="Exportar datos">
+                    <i class="fas fa-download"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav-tabs">
+        <div class="nav-container">
+            <button class="nav-tab active" data-section="dashboard">
+                <i class="fas fa-home"></i> Dashboard
+            </button>
+            <button class="nav-tab" data-section="nutrition">
+                <i class="fas fa-utensils"></i> Nutrición
+            </button>
+            <button class="nav-tab" data-section="workouts">
+                <i class="fas fa-dumbbell"></i> Entrenamientos
+            </button>
+            <button class="nav-tab" data-section="measurements">
+                <i class="fas fa-ruler"></i> Medidas
+            </button>
+            <button class="nav-tab" data-section="supplements">
+                <i class="fas fa-pills"></i> Suplementos
+            </button>
+            <button class="nav-tab" data-section="race10k">
+                <i class="fas fa-medal"></i> Plan 10K
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="grid grid-4">
+                <div class="stat-card">
+                    <div class="stat-label">Peso Actual</div>
+                    <div class="stat-value" id="currentWeight">108.0</div>
+                    <div class="stat-label">kg / 108 kg</div>
+                </div>
+                <div class="stat-card" style="background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);">
+                    <div class="stat-label">IMC</div>
+                    <div class="stat-value" id="currentBMI">32.6</div>
+                    <div class="stat-label">Objetivo: 27.8</div>
+                </div>
+                <div class="stat-card" style="background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);">
+                    <div class="stat-label">Grasa Corporal</div>
+                    <div class="stat-value" id="bodyFat">28%</div>
+                    <div class="stat-label">Objetivo: 20%</div>
+                </div>
+                <div class="stat-card" style="background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);">
+                    <div class="stat-label">Días Restantes</div>
+                    <div class="stat-value" id="daysToGoal">49</div>
+                    <div class="stat-label">Para 92 kg</div>
+                </div>
+            </div>
+
+            <div class="grid grid-2 mt-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-line"></i>
+                            Progreso Semanal
+                        </h3>
+                        <span class="badge badge-primary">Esta Semana</span>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="weeklyProgressChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-bullseye"></i>
+                            Objetivos del Día
+                        </h3>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">Proteínas</div>
+                            <div class="timeline-content">
+                                <div class="progress-container">
+                                    <div class="progress-label">
+                                        <span>200g objetivo</span>
+                                        <span id="proteinProgress">0g</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" id="proteinBar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Calorías</div>
+                            <div class="timeline-content">
+                                <div class="progress-container">
+                                    <div class="progress-label">
+                                        <span>2300 kcal objetivo</span>
+                                        <span id="caloriesProgress">0 kcal</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" id="caloriesBar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Agua</div>
+                            <div class="timeline-content">
+                                <div class="progress-container">
+                                    <div class="progress-label">
+                                        <span>4L objetivo</span>
+                                        <span id="waterProgress">0L</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" id="waterBar" style="width: 0%; background: linear-gradient(90deg, #06b6d4, #3b82f6);"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i>
+                <div>
+                    <strong>Recordatorio:</strong> Tu próxima carrera de 10K es pronto. Sigue el plan de afinamiento de 7 días para optimizar tu rendimiento y comodidad.
+                </div>
+            </div>
+        </section>
+
+        <!-- Nutrition Section -->
+        <section id="nutrition" class="section">
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-calculator"></i>
+                            Registro de Comida
+                        </h3>
+                    </div>
+                    <form id="foodForm">
+                        <div class="form-group">
+                            <label class="form-label">Alimento</label>
+                            <input type="text" class="form-input" id="foodName" placeholder="Ej: Pechuga de pollo" required>
+                        </div>
+                        <div class="grid grid-3">
+                            <div class="form-group">
+                                <label class="form-label">Proteínas (g)</label>
+                                <input type="number" class="form-input" id="foodProtein" placeholder="0" min="0" step="0.1">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Carbs (g)</label>
+                                <input type="number" class="form-input" id="foodCarbs" placeholder="0" min="0" step="0.1">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Grasas (g)</label>
+                                <input type="number" class="form-input" id="foodFats" placeholder="0" min="0" step="0.1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Calorías (kcal)</label>
+                            <input type="number" class="form-input" id="foodCalories" placeholder="0" min="0">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-plus"></i> Añadir Comida
+                        </button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-pie"></i>
+                            Macros del Día
+                        </h3>
+                        <button class="btn btn-outline" id="resetMacros">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                    <div class="macro-grid">
+                        <div class="macro-item">
+                            <div class="macro-value" id="totalProtein">0g</div>
+                            <div class="macro-label">Proteínas<br><small>200g</small></div>
+                        </div>
+                        <div class="macro-item">
+                            <div class="macro-value" id="totalCarbs">0g</div>
+                            <div class="macro-label">Carbohidratos<br><small>100-150g</small></div>
+                        </div>
+                        <div class="macro-item">
+                            <div class="macro-value" id="totalFats">0g</div>
+                            <div class="macro-label">Grasas<br><small>50-60g</small></div>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Calorías Totales</span>
+                            <span id="totalCalories">0 / 2300 kcal</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="totalCaloriesBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div id="todayFoodList" class="mt-2">
+                        <!-- Food items will be added here dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-lightbulb"></i>
+                        Recomendaciones Nutricionales
+                    </h3>
+                </div>
+                <div class="grid grid-3">
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <strong>Días 1-5:</strong> 100g carbs/día enfocados post-entreno
+                        </div>
+                    </div>
+                    <div class="alert alert-info">
+                        <i class="fas fa-tint"></i>
+                        <div>
+                            <strong>Hidratación:</strong> 3.5-4L agua/día mínimo
+                        </div>
+                    </div>
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>Proteína:</strong> 200g/día para preservar músculo
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workouts Section -->
+        <section id="workouts" class="section">
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-calendar-plus"></i>
+                            Registrar Entrenamiento
+                        </h3>
+                    </div>
+                    <form id="workoutForm">
+                        <div class="form-group">
+                            <label class="form-label">Tipo de Entrenamiento</label>
+                            <select class="form-select" id="workoutType" required>
+                                <option value="strength">Fuerza</option>
+                                <option value="zone2">Zone 2 (Caminata Inclinada)</option>
+                                <option value="mixed">Mixto</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Duración (minutos)</label>
+                            <input type="number" class="form-input" id="workoutDuration" placeholder="45" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Notas</label>
+                            <textarea class="form-input" id="workoutNotes" rows="3" placeholder="Ejercicios realizados, sensaciones..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-save"></i> Guardar Entrenamiento
+                        </button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-history"></i>
+                            Entrenamientos Recientes
+                        </h3>
+                    </div>
+                    <div id="workoutList">
+                        <div class="workout-card card">
+                            <span class="workout-type workout-strength">Fuerza</span>
+                            <h4>Rutina Upper Body</h4>
+                            <p>Press banca, dominadas, press militar...</p>
+                            <div class="workout-meta">
+                                <span><i class="fas fa-clock"></i> 60 min</span>
+                                <span><i class="fas fa-fire"></i> 450 kcal</span>
+                                <span><i class="fas fa-calendar"></i> Hoy</span>
+                            </div>
+                        </div>
+                        <div class="workout-card card">
+                            <span class="workout-type workout-cardio">Zone 2</span>
+                            <h4>Caminata Inclinada</h4>
+                            <p>Cinta 10% inclinación, Zona 2</p>
+                            <div class="workout-meta">
+                                <span><i class="fas fa-clock"></i> 30 min</span>
+                                <span><i class="fas fa-fire"></i> 280 kcal</span>
+                                <span><i class="fas fa-calendar"></i> Ayer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-tasks"></i>
+                        Plan Semanal de Entrenamiento
+                    </h3>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">Lunes</div>
+                        <div class="timeline-content">
+                            <strong>Fuerza - Pierna</strong>
+                            <p>Sentadilla, peso muerto, zancadas + 30 min Zone 2</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Martes</div>
+                        <div class="timeline-content">
+                            <strong>Fuerza - Empuje</strong>
+                            <p>Press banca, press militar, fondos + 20 min Zone 2</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Miércoles</div>
+                        <div class="timeline-content">
+                            <strong>Zone 2 + Core</strong>
+                            <p>45 min caminata inclinada + trabajo de core</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Jueves</div>
+                        <div class="timeline-content">
+                            <strong>Fuerza - Tirón</strong>
+                            <p>Dominadas, remo, curl bíceps + 30 min Zone 2</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Viernes</div>
+                        <div class="timeline-content">
+                            <strong>Fuerza - Full Body</strong>
+                            <p>Ejercicios compuestos + movilidad</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Sábado</div>
+                        <div class="timeline-content">
+                            <strong>Zone 2 Largo</strong>
+                            <p>60 min caminata/carrera suave</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Domingo</div>
+                        <div class="timeline-content">
+                            <strong>Descanso Activo</strong>
+                            <p>Estiramientos, movilidad, paseo ligero</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Measurements Section -->
+        <section id="measurements" class="section">
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-ruler-vertical"></i>
+                            Registrar Medidas
+                        </h3>
+                    </div>
+                    <form id="measurementForm">
+                        <div class="grid grid-2">
+                            <div class="form-group">
+                                <label class="form-label">Peso (kg)</label>
+                                <input type="number" class="form-input" id="measureWeight" step="0.1" placeholder="108.0">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Cintura (cm)</label>
+                                <input type="number" class="form-input" id="measureWaist" step="0.1" placeholder="105">
+                            </div>
+                        </div>
+                        <div class="grid grid-2">
+                            <div class="form-group">
+                                <label class="form-label">Cadera (cm)</label>
+                                <input type="number" class="form-input" id="measureHip" step="0.1" placeholder="110">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Cuello (cm)</label>
+                                <input type="number" class="form-input" id="measureNeck" step="0.1" placeholder="42">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Fecha</label>
+                            <input type="date" class="form-input" id="measureDate" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-save"></i> Guardar Medidas
+                        </button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-area"></i>
+                            Evolución
+                        </h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="measurementsChart"></canvas>
+                    </div>
+                    <div class="grid grid-2 mt-2">
+                        <div class="stat-card" style="padding: 1rem;">
+                            <div class="stat-label">Pérdida Total</div>
+                            <div class="stat-value" style="font-size: 1.5rem;">0 kg</div>
+                        </div>
+                        <div class="stat-card" style="padding: 1rem; background: linear-gradient(135deg, #10b981, #06b6d4);">
+                            <div class="stat-label">Cintura</div>
+                            <div class="stat-value" style="font-size: 1.5rem;">-0 cm</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-camera"></i>
+                        Fotos de Progreso
+                    </h3>
+                    <button class="btn btn-primary" id="addPhoto">
+                        <i class="fas fa-plus"></i> Añadir Foto
+                    </button>
+                </div>
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i>
+                    <div>
+                        <strong>Consejo:</strong> Tómate fotos cada semana en las mismas condiciones (luz, hora, ropa) para ver mejor el progreso.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Supplements Section -->
+        <section id="supplements" class="section">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-pills"></i>
+                        Suplementación Diaria
+                    </h3>
+                    <button class="btn btn-outline" id="resetSupplements">
+                        <i class="fas fa-redo"></i> Reset Día
+                    </button>
+                </div>
+                <div class="supplement-list" id="supplementList">
+                    <div class="supplement-item" data-supplement="d3k2">
+                        <div class="supplement-checkbox">
+                            <i class="fas fa-check" style="color: white; display: none;"></i>
+                        </div>
+                        <div class="supplement-info">
+                            <h4>Vitamina D3 + K2</h4>
+                            <p>5000 UI D3 + 100mcg K2 - Mañana con comida</p>
+                        </div>
+                        <span class="badge badge-primary">Esencial</span>
+                    </div>
+                    <div class="supplement-item" data-supplement="omega3">
+                        <div class="supplement-checkbox">
+                            <i class="fas fa-check" style="color: white; display: none;"></i>
+                        </div>
+                        <div class="supplement-info">
+                            <h4>Omega-3</h4>
+                            <p>2-3g EPA/DHA - Con comidas principales</p>
+                        </div>
+                        <span class="badge badge-primary">Antiinflamatorio</span>
+                    </div>
+                    <div class="supplement-item" data-supplement="magnesium">
+                        <div class="supplement-checkbox">
+                            <i class="fas fa-check" style="color: white; display: none;"></i>
+                        </div>
+                        <div class="supplement-info">
+                            <h4>Magnesio Glicinato</h4>
+                            <p>400mg - Noche antes de dormir</p>
+                        </div>
+                        <span class="badge badge-success">Sueño</span>
+                    </div>
+                    <div class="supplement-item" data-supplement="ashwagandha">
+                        <div class="supplement-checkbox">
+                            <i class="fas fa-check" style="color: white; display: none;"></i>
+                        </div>
+                        <div class="supplement-info">
+                            <h4>Ashwagandha</h4>
+                            <p>300-600mg - Noche (gestión cortisol)</p>
+                        </div>
+                        <span class="badge badge-warning">Estrés</span>
+                    </div>
+                    <div class="supplement-item" data-supplement="protein">
+                        <div class="supplement-checkbox">
+                            <i class="fas fa-check" style="color: white; display: none;"></i>
+                        </div>
+                        <div class="supplement-info">
+                            <h4>Proteína Whey</h4>
+                            <p>Según necesidad para alcanzar 200g/día</p>
+                        </div>
+                        <span class="badge badge-primary">Músculo</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-clock"></i>
+                            Horario de Suplementos
+                        </h3>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">Mañana (con desayuno)</div>
+                            <div class="timeline-content">
+                                • Vitamina D3 + K2<br>
+                                • Omega-3<br>
+                                • Multivitamínico (si aplica)
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Post-entreno</div>
+                            <div class="timeline-content">
+                                • Proteína Whey (si es necesario)<br>
+                                • Omega-3
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Noche (antes de dormir)</div>
+                            <div class="timeline-content">
+                                • Magnesio Glicinato<br>
+                                • Ashwagandha
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-info-circle"></i>
+                            Beneficios
+                        </h3>
+                    </div>
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>Vit D3:</strong> Mejora salud ósea, función muscular e inmunidad
+                        </div>
+                    </div>
+                    <div class="alert alert-info">
+                        <i class="fas fa-heart"></i>
+                        <div>
+                            <strong>Omega-3:</strong> Antiinflamatorio, salud cardiovascular
+                        </div>
+                    </div>
+                    <div class="alert alert-warning">
+                        <i class="fas fa-moon"></i>
+                        <div>
+                            <strong>Magnesio:</strong> Mejora calidad de sueño, previene calambres
+                        </div>
+                    </div>
+                    <div class="alert alert-success">
+                        <i class="fas fa-brain"></i>
+                        <div>
+                            <strong>Ashwagandha:</strong> Reduce cortisol, mejora recuperación
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Race 10K Section -->
+        <section id="race10k" class="section">
+            <div class="alert alert-warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div>
+                    <strong>Protocolo de 7 Días Pre-Carrera:</strong> Afinamiento para optimizar rendimiento y comodidad con la camiseta
+                </div>
+            </div>
+
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-calendar-alt"></i>
+                            Cronograma Pre-Carrera
+                        </h3>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">Días 7-4</div>
+                            <div class="timeline-content">
+                                <strong>Fase de Preparación</strong><br>
+                                • Mantén 2300 kcal, 200g proteína<br>
+                                • Reduce fibra fermentable<br>
+                                • Hidratación: 3.5-4L/día<br>
+                                • Entrenamiento normal
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Días 3-2</div>
+                            <div class="timeline-content">
+                                <strong>Fase de Afinamiento</strong><br>
+                                • Carbs: 100-120g/día<br>
+                                • Sodio reducido + más potasio<br>
+                                • Alimentos anti-hinchazón<br>
+                                • Última comida 3h antes de dormir
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Día 1 (Víspera)</div>
+                            <div class="timeline-content">
+                                <strong>Carga Moderada</strong><br>
+                                • Carbs: 150-180g<br>
+                                • Comidas pequeñas y frecuentes<br>
+                                • Cena: arroz + pollo + zanahoria<br>
+                                • Hidratación: 2.5-3L
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Día 0 (Carrera)</div>
+                            <div class="timeline-content">
+                                <strong>¡Día de la Carrera!</strong><br>
+                                • Desayuno 2.5-3h antes<br>
+                                • Nada nuevo<br>
+                                • Hidratación ligera<br>
+                                • ¡Disfruta y da tu mejor esfuerzo!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-tshirt"></i>
+                            Estrategia Camiseta
+                        </h3>
+                    </div>
+                    <div class="alert alert-info">
+                        <i class="fas fa-lightbulb"></i>
+                        <div>
+                            <strong>Consejos para que la camiseta te quede mejor:</strong>
+                        </div>
+                    </div>
+                    <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                        <li class="mb-1">Usa camiseta de compresión ligera debajo</li>
+                        <li class="mb-1">Aplica vaselina en axilas y costados</li>
+                        <li class="mb-1">Evita alimentos que generen gas esta semana</li>
+                        <li class="mb-1">Mantén postura con core activado</li>
+                        <li class="mb-1">Estira la camiseta hacia el short</li>
+                    </ul>
+                    <div class="mt-2">
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span>Reducción de cintura esperada</span>
+                                <span>2-4 cm</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-utensils"></i>
+                        Alimentos Permitidos/Prohibidos
+                    </h3>
+                </div>
+                <div class="grid grid-2">
+                    <div>
+                        <h4 class="mb-1" style="color: var(--success);"><i class="fas fa-check-circle"></i> Permitidos</h4>
+                        <ul style="margin-left: 1.5rem;">
+                            <li>Espinacas cocidas</li>
+                            <li>Zanahoria</li>
+                            <li>Calabacín</li>
+                            <li>Pepino</li>
+                            <li>Piña</li>
+                            <li>Papaya</li>
+                            <li>Arroz blanco</li>
+                            <li>Pollo/pescado blanco</li>
+                            <li>Infusión de jengibre</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="mb-1" style="color: var(--danger);"><i class="fas fa-times-circle"></i> Evitar</h4>
+                        <ul style="margin-left: 1.5rem;">
+                            <li>Legumbres</li>
+                            <li>Brócoli/coliflor</li>
+                            <li>Repollo</li>
+                            <li>Cebolla cruda</li>
+                            <li>Bebidas con gas</li>
+                            <li>Alcohol</li>
+                            <li>Comida picante</li>
+                            <li>Exceso de cafeína</li>
+                            <li>Alimentos nuevos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-clipboard-check"></i>
+                        Checklist Día de Carrera
+                    </h3>
+                </div>
+                <div class="supplement-list" id="raceChecklist">
+                    <div class="supplement-item" data-check="breakfast">
+                        <div class="supplement-checkbox">
+                            <i class="fas fa-check" style="color: white; display: none;"></i>
+                        </div>
+                        <div class="supplement-info">
+                            <h4>Desayuno habitual 2.5-3h antes</h4>
+                            <p>Avena + proteína + plátano maduro</p>
+                        </div>
+                    </div>
+                    <div class="supplement-item" data-check="hydration">
+                        <div class="supplement-checkbox">
+                            <i class="fas fa-check" style="color: white; display: none;"></i>
+                        </div>
+                        <div class="supplement-info">
+                            <h4>Hidratación controlada</h4>
+                            <p>Pequeños sorbos hasta 30 min pre-salida</p>
+                        </div>
+                    </div>
+                    <div class="supplement-item" data-check="compression">
+                        <div class="supplement-checkbox">
+                            <i class="fas fa-check" style="color: white; display: none;"></i>
+                        </div>
+                        <div class="supplement-info">
+                            <h4>Capa base de compresión</h4>
+                            <p>Sin costuras en zonas de fricción</p>
+                        </div>
+                    </div>
+                    <div class="supplement-item" data-check="vaseline">
+                        <div class="supplement-checkbox">
+                            <i class="fas fa-check" style="color: white; display: none;"></i>
+                        </div>
+                        <div class="supplement-info">
+                            <h4>Vaselina anti-rozaduras</h4>
+                            <p>Axilas, pecho y costados</p>
+                        </div>
+                    </div>
+                    <div class="supplement-item" data-check="warmup">
+                        <div class="supplement-checkbox">
+                            <i class="fas fa-check" style="color: white; display: none;"></i>
+                        </div>
+                        <div class="supplement-info">
+                            <h4>Calentamiento dinámico</h4>
+                            <p>10-15 min activación sin fatiga</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modalTitle">Título</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div id="modalContent">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // MarioFit Pro - Application Logic
+        // ============================================
+
+        // State Management
+        const state = {
+            currentSection: 'dashboard',
+            theme: 'light',
+            user: {
+                name: 'Mario',
+                age: 41,
+                height: 182,
+                currentWeight: 108.0,
+                targetWeight: 92.0,
+                bodyFat: 28,
+                targetBodyFat: 20
+            },
+            nutrition: {
+                dailyCalories: 2300,
+                targetProtein: 200,
+                targetCarbs: 120,
+                targetFats: 60,
+                currentProtein: 0,
+                currentCarbs: 0,
+                currentFats: 0,
+                currentCalories: 0,
+                waterIntake: 0,
+                targetWater: 4000,
+                foods: []
+            },
+            workouts: [],
+            measurements: [],
+            supplements: {
+                d3k2: false,
+                omega3: false,
+                magnesium: false,
+                ashwagandha: false,
+                protein: false
+            },
+            raceChecklist: {
+                breakfast: false,
+                hydration: false,
+                compression: false,
+                vaseline: false,
+                warmup: false
+            }
+        };
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => {
+            loadData();
+            initNavigation();
+            initTheme();
+            initForms();
+            initSupplements();
+            initRaceChecklist();
+            updateDashboard();
+            setTodayDate();
+        });
+
+        // Data Persistence
+        function saveData() {
+            localStorage.setItem('marioFitData', JSON.stringify({
+                user: state.user,
+                nutrition: state.nutrition,
+                workouts: state.workouts,
+                measurements: state.measurements,
+                supplements: state.supplements,
+                raceChecklist: state.raceChecklist,
+                lastSave: new Date().toISOString()
+            }));
+        }
+
+        function loadData() {
+            const saved = localStorage.getItem('marioFitData');
+            if (saved) {
+                const data = JSON.parse(saved);
+                Object.assign(state, data);
+                
+                // Reset daily values if new day
+                const lastSave = new Date(data.lastSave);
+                const today = new Date();
+                if (lastSave.toDateString() !== today.toDateString()) {
+                    resetDailyValues();
+                }
+            }
+        }
+
+        function resetDailyValues() {
+            state.nutrition.currentProtein = 0;
+            state.nutrition.currentCarbs = 0;
+            state.nutrition.currentFats = 0;
+            state.nutrition.currentCalories = 0;
+            state.nutrition.waterIntake = 0;
+            state.nutrition.foods = [];
+            state.supplements = {
+                d3k2: false,
+                omega3: false,
+                magnesium: false,
+                ashwagandha: false,
+                protein: false
+            };
+            saveData();
+        }
+
+        // Navigation
+        function initNavigation() {
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const section = tab.dataset.section;
+                    switchSection(section);
+                });
+            });
+        }
+
+        function switchSection(sectionId) {
+            // Update tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.toggle('active', tab.dataset.section === sectionId);
+            });
+
+            // Update sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.toggle('active', section.id === sectionId);
+            });
+
+            state.currentSection = sectionId;
+            
+            // Update specific sections
+            if (sectionId === 'dashboard') {
+                updateDashboard();
+            }
+        }
+
+        // Theme Toggle
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            state.theme = savedTheme;
+            document.body.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+
+            document.getElementById('themeToggle').addEventListener('click', () => {
+                state.theme = state.theme === 'light' ? 'dark' : 'light';
+                document.body.setAttribute('data-theme', state.theme);
+                localStorage.setItem('theme', state.theme);
+                updateThemeIcon(state.theme);
+            });
+        }
+
+        function updateThemeIcon(theme) {
+            const icon = document.querySelector('#themeToggle i');
+            icon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+        }
+
+        // Forms
+        function initForms() {
+            // Food Form
+            document.getElementById('foodForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                addFood();
+            });
+
+            // Workout Form
+            document.getElementById('workoutForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                addWorkout();
+            });
+
+            // Measurement Form
+            document.getElementById('measurementForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                addMeasurement();
+            });
+
+            // Reset buttons
+            document.getElementById('resetMacros').addEventListener('click', () => {
+                if (confirm('¿Resetear macros del día?')) {
+                    state.nutrition.currentProtein = 0;
+                    state.nutrition.currentCarbs = 0;
+                    state.nutrition.currentFats = 0;
+                    state.nutrition.currentCalories = 0;
+                    state.nutrition.foods = [];
+                    updateNutritionDisplay();
+                    saveData();
+                }
+            });
+
+            document.getElementById('resetSupplements').addEventListener('click', () => {
+                Object.keys(state.supplements).forEach(key => {
+                    state.supplements[key] = false;
+                });
+                updateSupplementsDisplay();
+                saveData();
+            });
+
+            // Export data
+            document.getElementById('exportData').addEventListener('click', exportData);
+            
+            // Refresh data
+            document.getElementById('refreshData').addEventListener('click', () => {
+                updateDashboard();
+                showNotification('Datos actualizados', 'success');
+            });
+
+            // Modal close
+            document.getElementById('modalClose').addEventListener('click', closeModal);
+            document.getElementById('modal').addEventListener('click', (e) => {
+                if (e.target.id === 'modal') closeModal();
+            });
+        }
+
+        // Nutrition Functions
+        function addFood() {
+            const food = {
+                name: document.getElementById('foodName').value,
+                protein: parseFloat(document.getElementById('foodProtein').value) || 0,
+                carbs: parseFloat(document.getElementById('foodCarbs').value) || 0,
+                fats: parseFloat(document.getElementById('foodFats').value) || 0,
+                calories: parseFloat(document.getElementById('foodCalories').value) || 0,
+                time: new Date().toISOString()
+            };
+
+            state.nutrition.foods.push(food);
+            state.nutrition.currentProtein += food.protein;
+            state.nutrition.currentCarbs += food.carbs;
+            state.nutrition.currentFats += food.fats;
+            state.nutrition.currentCalories += food.calories;
+
+            updateNutritionDisplay();
+            saveData();
+            
+            // Reset form
+            document.getElementById('foodForm').reset();
+            showNotification('Alimento añadido', 'success');
+        }
+
+        function updateNutritionDisplay() {
+            document.getElementById('totalProtein').textContent = `${Math.round(state.nutrition.currentProtein)}g`;
+            document.getElementById('totalCarbs').textContent = `${Math.round(state.nutrition.currentCarbs)}g`;
+            document.getElementById('totalFats').textContent = `${Math.round(state.nutrition.currentFats)}g`;
+            document.getElementById('totalCalories').textContent = `${Math.round(state.nutrition.currentCalories)} / ${state.nutrition.dailyCalories} kcal`;
+            
+            const calPercentage = (state.nutrition.currentCalories / state.nutrition.dailyCalories) * 100;
+            document.getElementById('totalCaloriesBar').style.width = `${Math.min(calPercentage, 100)}%`;
+
+            // Update dashboard progress bars
+            document.getElementById('proteinProgress').textContent = `${Math.round(state.nutrition.currentProtein)}g`;
+            document.getElementById('proteinBar').style.width = `${Math.min((state.nutrition.currentProtein / state.nutrition.targetProtein) * 100, 100)}%`;
+            
+            document.getElementById('caloriesProgress').textContent = `${Math.round(state.nutrition.currentCalories)} kcal`;
+            document.getElementById('caloriesBar').style.width = `${Math.min((state.nutrition.currentCalories / state.nutrition.dailyCalories) * 100, 100)}%`;
+
+            // Food list
+            const foodList = document.getElementById('todayFoodList');
+            if (foodList) {
+                foodList.innerHTML = state.nutrition.foods.map(food => `
+                    <div class="alert alert-info" style="margin-top: 0.5rem;">
+                        <div style="flex: 1;">
+                            <strong>${food.name}</strong>
+                            <div style="font-size: 0.875rem; color: var(--text-secondary);">
+                                P: ${food.protein}g | C: ${food.carbs}g | G: ${food.fats}g | ${food.calories} kcal
+                            </div>
+                        </div>
+                        <button class="btn-icon" onclick="removeFood(${state.nutrition.foods.indexOf(food)})" style="width: 32px; height: 32px;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function removeFood(index) {
+            const food = state.nutrition.foods[index];
+            state.nutrition.currentProtein -= food.protein;
+            state.nutrition.currentCarbs -= food.carbs;
+            state.nutrition.currentFats -= food.fats;
+            state.nutrition.currentCalories -= food.calories;
+            state.nutrition.foods.splice(index, 1);
+            updateNutritionDisplay();
+            saveData();
+        }
+
+        // Workout Functions
+        function addWorkout() {
+            const workout = {
+                type: document.getElementById('workoutType').value,
+                duration: parseInt(document.getElementById('workoutDuration').value),
+                notes: document.getElementById('workoutNotes').value,
+                date: new Date().toISOString(),
+                calories: Math.floor(Math.random() * 200) + 200 // Placeholder calculation
+            };
+
+            state.workouts.unshift(workout);
+            saveData();
+            
+            document.getElementById('workoutForm').reset();
+            showNotification('Entrenamiento guardado', 'success');
+            updateWorkoutList();
+        }
+
+        function updateWorkoutList() {
+            const list = document.getElementById('workoutList');
+            if (!list) return;
+
+            list.innerHTML = state.workouts.slice(0, 5).map(workout => `
+                <div class="workout-card card">
+                    <span class="workout-type ${workout.type === 'strength' ? 'workout-strength' : 'workout-cardio'}">
+                        ${workout.type === 'strength' ? 'Fuerza' : workout.type === 'zone2' ? 'Zone 2' : 'Mixto'}
+                    </span>
+                    <h4>${workout.type === 'strength' ? 'Rutina de Fuerza' : 'Cardio Zone 2'}</h4>
+                    <p>${workout.notes || 'Sin notas'}</p>
+                    <div class="workout-meta">
+                        <span><i class="fas fa-clock"></i> ${workout.duration} min</span>
+                        <span><i class="fas fa-fire"></i> ${workout.calories} kcal</span>
+                        <span><i class="fas fa-calendar"></i> ${new Date(workout.date).toLocaleDateString()}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Measurement Functions
+        function addMeasurement() {
+            const measurement = {
+                weight: parseFloat(document.getElementById('measureWeight').value),
+                waist: parseFloat(document.getElementById('measureWaist').value),
+                hip: parseFloat(document.getElementById('measureHip').value),
+                neck: parseFloat(document.getElementById('measureNeck').value),
+                date: document.getElementById('measureDate').value,
+                bmi: calculateBMI(parseFloat(document.getElementById('measureWeight').value))
+            };
+
+            if (measurement.weight) {
+                state.user.currentWeight = measurement.weight;
+            }
+
+            state.measurements.unshift(measurement);
+            saveData();
+            
+            document.getElementById('measurementForm').reset();
+            setTodayDate();
+            showNotification('Medidas guardadas', 'success');
+            updateDashboard();
+        }
+
+        function calculateBMI(weight) {
+            const heightM = state.user.height / 100;
+            return (weight / (heightM * heightM)).toFixed(1);
+        }
+
+        // Supplements
+        function initSupplements() {
+            const items = document.querySelectorAll('#supplementList .supplement-item');
+            items.forEach(item => {
+                const key = item.dataset.supplement;
+                if (state.supplements[key]) {
+                    item.classList.add('checked');
+                    item.querySelector('.fa-check').style.display = 'block';
+                }
+
+                item.addEventListener('click', () => {
+                    state.supplements[key] = !state.supplements[key];
+                    item.classList.toggle('checked');
+                    const checkIcon = item.querySelector('.fa-check');
+                    checkIcon.style.display = state.supplements[key] ? 'block' : 'none';
+                    saveData();
+                });
+            });
+        }
+
+        function updateSupplementsDisplay() {
+            const items = document.querySelectorAll('#supplementList .supplement-item');
+            items.forEach(item => {
+                const key = item.dataset.supplement;
+                item.classList.toggle('checked', state.supplements[key]);
+                const checkIcon = item.querySelector('.fa-check');
+                if (checkIcon) {
+                    checkIcon.style.display = state.supplements[key] ? 'block' : 'none';
+                }
+            });
+        }
+
+        // Race Checklist
+        function initRaceChecklist() {
+            const items = document.querySelectorAll('#raceChecklist .supplement-item');
+            items.forEach(item => {
+                const key = item.dataset.check;
+                if (state.raceChecklist[key]) {
+                    item.classList.add('checked');
+                    item.querySelector('.fa-check').style.display = 'block';
+                }
+
+                item.addEventListener('click', () => {
+                    state.raceChecklist[key] = !state.raceChecklist[key];
+                    item.classList.toggle('checked');
+                    const checkIcon = item.querySelector('.fa-check');
+                    checkIcon.style.display = state.raceChecklist[key] ? 'block' : 'none';
+                    saveData();
+                });
+            });
+        }
+
+        // Dashboard
+        function updateDashboard() {
+            // Update stats
+            document.getElementById('currentWeight').textContent = state.user.currentWeight.toFixed(1);
+            document.getElementById('currentBMI').textContent = calculateBMI(state.user.currentWeight);
+            document.getElementById('bodyFat').textContent = `${state.user.bodyFat}%`;
+            
+            // Calculate days to goal (assuming 0.5kg per week)
+            const weightToLose = state.user.currentWeight - state.user.targetWeight;
+            const weeksToGoal = Math.ceil(weightToLose / 0.5);
+            document.getElementById('daysToGoal').textContent = weeksToGoal * 7;
+
+            // Update water progress
+            document.getElementById('waterProgress').textContent = `${(state.nutrition.waterIntake / 1000).toFixed(1)}L`;
+            document.getElementById('waterBar').style.width = `${Math.min((state.nutrition.waterIntake / state.nutrition.targetWater) * 100, 100)}%`;
+
+            updateNutritionDisplay();
+            updateWorkoutList();
+        }
+
+        // Utilities
+        function setTodayDate() {
+            const today = new Date().toISOString().split('T')[0];
+            const dateInput = document.getElementById('measureDate');
+            if (dateInput) {
+                dateInput.value = today;
+            }
+        }
+
+        function showNotification(message, type = 'info') {
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.style.position = 'fixed';
+            alert.style.top = '100px';
+            alert.style.right = '20px';
+            alert.style.zIndex = '3000';
+            alert.style.minWidth = '300px';
+            alert.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'warning' ? 'exclamation-triangle' : 'info-circle'}"></i>
+                <div>${message}</div>
+            `;
+            
+            document.body.appendChild(alert);
+            setTimeout(() => alert.remove(), 3000);
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+
+        function exportData() {
+            const dataStr = JSON.stringify(state, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `mariofit-backup-${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+            URL.revokeObjectURL(url);
+            showNotification('Datos exportados', 'success');
+        }
+
+        // Water tracking (add to dashboard)
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add water tracking buttons to dashboard
+            const waterCard = document.querySelector('.stat-card:nth-child(4)');
+            if (waterCard) {
+                const waterControls = document.createElement('div');
+                waterControls.style.marginTop = '1rem';
+                waterControls.innerHTML = `
+                    <button class="btn btn-success" id="addWater" style="padding: 0.5rem 1rem; font-size: 0.875rem;">
+                        <i class="fas fa-plus"></i> +250ml
+                    </button>
+                `;
+                waterCard.appendChild(waterControls);
+
+                document.getElementById('addWater').addEventListener('click', () => {
+                    state.nutrition.waterIntake += 250;
+                    updateDashboard();
+                    saveData();
+                });
+            }
+        });
+
+        // Service Worker for PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('data:text/javascript,' + encodeURIComponent(`
+                self.addEventListener('install', e => e.waitUntil(self.skipWaiting()));
+                self.addEventListener('activate', e => e.waitUntil(self.clients.claim()));
+                self.addEventListener('fetch', e => e.respondWith(fetch(e.request).catch(() => new Response('Offline'))));
+            `)).catch(() => console.log('SW registration skipped'));
+        }
+    </script>
+</body>
+</html>
